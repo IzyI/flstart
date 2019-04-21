@@ -1,0 +1,2 @@
+# flstart
+Flask start blank
