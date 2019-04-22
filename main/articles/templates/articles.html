@@ -1,0 +1,68 @@
+{% extends "base2.html" %}
+
+{% block title %}
+{{ config.SITE_NAME }} | Полезные статьи
+{% endblock %}
+
+{% block block_present %}
+<div id="block_present" class="a1">
+</div>
+{% endblock %}
+
+{% block h1 %}
+<h1 class="title_not_front">Полезные статьи<br>
+    <span>{{ tag_filter }}</span>
+</h1>
+{% endblock %}
+
+
+{% block content %}
+<div class="row content_article">
+    <div class="row">
+        {% for i in articles %}
+        <div class="col-12  ">
+            <div class="item d-flex">
+                <div class="imgg">
+                    {% set url="article/"+i.image %}
+                    <a href="/articles/all_articles/{{i.url}}"><img src="{{ url|thumbnail('200x200') }}"
+                                                                    alt="{{ i.name }}"></a>
+                </div>
+                <div class="bda">
+                    <h2>{{ i.title|safe }}</h2>
+                    <div class="anons">{{ i.anons[:250] }}...</div>
+                    <div class="info d-flex justify-content-between">
+                        <div class="tags d-flex align-items-end">
+                            <div class="title_cont">Теги:</div>
+                            <div class="info_conten">
+                                {% for tg in i.tags %}
+                                <a class="tag tag-default" href="/articles/{{ tg.slug}}">{{tg.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div><a href="/articles/all_articles/{{i.url}}">Подробнее</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="pagination">
+        {% if prev_url %}
+        <a href="{{ prev_url }}">Назад</a>
+        {% endif %}
+        {% if next_url %}
+        <a href="{{ next_url }}">Вперед</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+sidebar
+{% endblock %}
+
+
+
+

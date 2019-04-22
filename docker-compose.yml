@@ -1,0 +1,51 @@
+version: '2'  
+services:
+  nginx:
+    image: nginx:latest
+    container_name: ng
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./static:/home/flask/static
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/sites-enabled:/etc/nginx/sites-enabled
+      - ./log_ngnix:/var/log/nginx
+    links:
+      - web
+    depends_on:
+      - web
+
+
+  web:
+    build: ./
+    container_name: web
+    working_dir: /home/flask
+    command: gunicorn -w 2  --bind 0.0.0.0:5000 serve:node
+    ports:
+      - "5000:5000"
+    links:
+      - db
+    depends_on:
+      - db
+    env_file:
+      - ./config/env
+    volumes:
+      - .:/home/flask
+      - ./log_gunicorn:/var/log/gunicorn
+    expose:
+      - "5000"
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    env_file:
+      - ./config/env
+    ports:
+      - '5432:5432'
+    expose:
+      - "5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data

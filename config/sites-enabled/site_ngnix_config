@@ -1,0 +1,29 @@
+server {
+
+    server_name  127.0.0.1 # Подставьте свой домен
+    listen 80;
+    access_log  /var/log/nginx/flask_log.log;
+
+    #location /.well-known {
+    #    root /var/www/html; # Понадобится для letsencrypt
+    #}
+
+    # Статические файлы
+    location = /favicon.ico {
+        alias /home/flask/static/favicon.ico;
+    }
+
+    location /_include/ {
+        alias /home/flask/static/;
+    }
+    location /static/ {
+        alias /home/flask/static/;
+    }
+
+   location / {
+    proxy_pass http://web:5000;
+    proxy_set_header X-Forwarded-Host $server_name;
+    proxy_set_header X-Real-IP $remote_addr;
+    add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
+   }
+}

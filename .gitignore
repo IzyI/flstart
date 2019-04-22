@@ -1,0 +1,10 @@
+.idea
+.git
+venv/*
+tmp/*
+log*/*
+*.log
+__pycache__/*
+data/*
+.sass-cache/*
+*cache*

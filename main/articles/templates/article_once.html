@@ -1,0 +1,44 @@
+{% extends "base2.html" %}
+
+{% block title %}
+{{ config.SITE_NAME }} | {{article.title|striptags}}
+{% endblock %}
+
+{% block block_present %}
+<div id="block_present" class="a1">
+</div>
+{% endblock %}
+
+{% block h1 %}
+<h1 class="title_not_front">{{article.title|safe}}
+</h1>
+{% endblock %}
+
+
+{% block content %}
+<div class="row content_article">
+        <div class="bd_art_main">
+            <div class="body_article">
+                <div class="text_article">{{article.text|safe}}</div>
+                <div class="info_article d-flex justify-content-between">
+                    <div class="author_article"><span>Автор:</span> {{article.author}}</div>
+                    <div class="date_article"><span>Дата:</span>{{article.date.strftime('%Y-%m-%d')}}</div>
+                </div>
+            </div>
+            <div class="tags_article d-flex align-items-end">
+                <div class="title_cont">Теги:</div>
+                <div class="info_conten">
+                    {% for tg in article.tags %}
+                    <a class="tag tag-default" href="/articles/{{ tg.slug}}">{{tg.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
+
+{% block sidebar %}
+sidebar
+{% endblock %}
+

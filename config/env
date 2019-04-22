@@ -1,0 +1,10 @@
+POSTGRES_USER=antik
+POSTGRES_DB=antdb
+POSTGRES_PASSWORD=vrqegtq4r23ewqs
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+PGDATA=/var/lib/postgresql/data/pgdata
+C_FORCE_ROOT=true
+APP_NAME=ant
+SECRET_KEY=secret_docker
+FLASK_APP=serve.py
