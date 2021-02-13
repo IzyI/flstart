@@ -15,7 +15,7 @@ from main.user import user
 from main.api import api_bp
 from main.pages import page
 from main.articles import article
-# from main.commands import create_db, drop_db, populate_db, recreate_db
+from main.commands import create_db, drop_db, create_user, recreate_db
 
 
 import os
@@ -25,6 +25,7 @@ from flask_ckeditor import upload_fail, upload_success
 def create_app(config=config.base_config, basedir_not_main=config.basedir_not_main):
     """Returns an initialized Flask application."""
     node = Flask(__name__, template_folder="templates")
+
     node.config.from_object(config)
     register_extensions(node)
     register_blueprints(node)
@@ -143,5 +144,5 @@ def register_jinja_env(app):
 
 def register_commands(app):
     """Register custom commands for the Flask CLI."""
-    # for command in [create_db, drop_db, populate_db, recreate_db]:
-    #     app.cli.command()(command)
+    for command in [create_db, drop_db, create_user, recreate_db]:
+        app.cli.command()(command)

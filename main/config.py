@@ -8,9 +8,9 @@ class base_config(object):
 
     POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'localhost')
     POSTGRES_PORT = os.environ.get('POSTGRES_PORT', 5432)
-    POSTGRES_USER = os.environ.get('POSTGRES_USER', 'ant')
-    POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 's434563sz6')
-    POSTGRES_DB = os.environ.get('POSTGRES_DB', 'hors')
+    POSTGRES_USER = os.environ.get('POSTGRES_USER', 'antik')
+    POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'vrqegtq4r23ewqs')
+    POSTGRES_DB = os.environ.get('POSTGRES_DB', 'antdb')
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
         POSTGRES_USER,
@@ -24,7 +24,7 @@ class base_config(object):
 
     DEBUG=False
     """Default configuration options."""
-    SITE_NAME = os.environ.get('APP_NAME', 'hors')
+    SITE_NAME = os.environ.get('APP_NAME', 'ant')
 
 
     CKEDITOR_SERVE_LOCAL = True
@@ -32,7 +32,7 @@ class base_config(object):
     CKEDITOR_FILE_UPLOADER = 'upload'
     # CKEDITOR_ENABLE_CSRF = True  # if you want to enable CSRF protect, uncomment this line
     UPLOADED_PATH = os.path.join(basedir_not_main, 'uploads')
-
+    print(UPLOADED_PATH)
 
     THUMBNAIL_MEDIA_ROOT =basedir_not_main+'/uploads'
     THUMBNAIL_MEDIA_URL = '/uploads/'

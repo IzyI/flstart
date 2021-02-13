@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% include 'components/head.html' %}
-<title>{% block title -%}{%- endblock %}</title>
+    {% include 'components/head.html' %}
+    <title>{% block title -%}{%- endblock %}</title>
 </head>
 {% set url_array = request.url.split('/')[3:] %}
-<body class="{% for i in url_array %}{{i}}{% endfor %} {% if url_array|length > 1 %} not_front {% else%} front {% endif %}">
+<body class="
+        {% for i in url_array %}{{ i }}{% endfor %} {% if url_array|length > 1 %} not_front {% else %} front {% endif %}">
 {% include 'components/menu.html' %}
-{% block block_present %}{% endblock %}
-{% block content %}{% endblock %}
-{% block block_verstka %}{% endblock %}
+<div class="">
+    {% block block_present %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block block_verstka %}{% endblock %}
+</div>
 {% include 'components/map.html' %}
 
 {% include 'components/footer.html' %}
@@ -22,7 +25,6 @@
 <script type="text/javascript" src="/static/js/slick.min.js"></script>
 <script type="text/javascript" src="/static/js/wow.min.js"></script>
 <script type="text/javascript" src="/static/js/main.js"></script>
-
 
 
 </html>

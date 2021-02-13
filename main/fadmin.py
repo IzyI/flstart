@@ -116,10 +116,12 @@ class MyArticleView(ModelView):
         return login.current_user.is_authenticated
 
 
-admin = Admin(name='Админ панель', index_view=MyAdminIndexView(), base_template='admin/my_admin.html',
+admin = Admin(name='Админ панель',
+              index_view=MyAdminIndexView(),
+              base_template='admin/my_admin.html',
               template_mode='bootstrap3')
 
 admin.add_view(MyPageView(Pages, db.session))
 admin.add_view(MyArticleView(Articles, db.session))
 admin.add_view(MyAllView(Tag, db.session))
-admin.add_view(MyFileAdmin(base_config.UPLOADED_PATH, '/img/', name='Uploads'))
+admin.add_view(MyFileAdmin(base_config.UPLOADED_PATH, '/uploads/', name='Uploads'))
